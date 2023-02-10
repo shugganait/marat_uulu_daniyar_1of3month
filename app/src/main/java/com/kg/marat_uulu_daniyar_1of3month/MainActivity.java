@@ -8,7 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText subject, text, addresses;
+    private EditText subject, text, to;
     private Button btn_send;
 
     @Override
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         btn_send.setOnClickListener(view -> {
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setType("text/plain");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL  , addresses.getText().toString());
+            emailIntent.putExtra(Intent.EXTRA_EMAIL  ,  new String[]{to.getText().toString()});
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject.getText().toString());
             emailIntent.putExtra(Intent.EXTRA_TEXT   , text.getText().toString());
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initObjects(){
-        addresses = findViewById(R.id.et_email);
+        to = findViewById(R.id.et_email);
         subject = findViewById(R.id.et_theme);
         text = findViewById(R.id.et_text);
         btn_send = findViewById(R.id.btn_send);
